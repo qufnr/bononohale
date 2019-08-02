@@ -52,14 +52,6 @@ native bool NONOHALE_IsGameFindHale ();
 native int NONOHALE_IsClientHale ( int client );
 
 /**
- * 클라이언트가 헤일 선택이 제외 될건지 채크합니다.
- *
- * @param client		클라이언트 인덱스
- * @return 클라이언트가 제외 된다면 true를 반환합니다.
- */
-native int NONOHALE_IsClientSafeHuman ( int client );
-
-/**
  * 헤일 클라이언트 값을 반환합니다.
  *
  * @return 헤일인 클라이언트 값
