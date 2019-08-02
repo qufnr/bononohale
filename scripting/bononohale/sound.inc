@@ -99,10 +99,7 @@ void SOUND_OnPlayHaleSound ( int player, int sndType ) {
 				return;
 		}
 		
-		float flOrigin[3];
-		GetClientAbsOrigin ( player, flOrigin );
-		flOrigin[2] += 5.0;
-		EmitSoundToAll ( szSnd, SOUND_FROM_WORLD, SNDCHAN_AUTO, SNDLEVEL_NORMAL, _, _, _, _, flOrigin );
+		EmitSoundToAll ( szSnd, player, SNDCHAN_AUTO, SNDLEVEL_NORMAL );
 		EmitSoundToAll ( szSnd, SOUND_FROM_PLAYER );
 		
 	//	PrintToChatAll ( "Sound Play: %s", szSnd );

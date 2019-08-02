@@ -4,7 +4,7 @@
 #include <autoexecconfig>
 #include <soundlib>
 
-#define PLUGIN_VERSION	"1.0.1"
+#define PLUGIN_VERSION	"1.0.2"
 
 public Plugin myinfo = {
 	name = "CS:GO VS. Saxston Hale Mode"
@@ -216,6 +216,8 @@ public void OnMapEnd () {
 	
 	MISC_KillGlobalTimer ();
 	MISC_KillHudSyncHndl ();
+	
+	SOUND_OnClearMusicTimer ();
 }
 
 public void OnEntityCreated ( int entity, const char[] classname ) {

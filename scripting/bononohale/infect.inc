@@ -26,6 +26,7 @@ void INFECT_HumanToHale ( int player, int iHaleIndex ) {
 	loringlib_SetEntityHealth ( player, loringlib_GetEntityMaxHealth ( player ) );
 	loringlib_SetEntityLaggedmovement ( player, g_HaleData[iHaleIndex].speed );
 	loringlib_SetEntityHelmet ( player, 0 );
+	loringlib_SetEntityArmor ( player, g_HaleData[iHaleIndex].armor );
 	SetEntityGravity ( player, g_HaleData[iHaleIndex].gravity );
 	
 	CS_SwitchTeam ( player, HALE_TEAM );
