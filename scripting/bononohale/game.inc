@@ -266,20 +266,16 @@ stock int GAME_GetRandomPlayer () {
 	int player = -1;
 	
 	while ( true ) {
-		player = loringlib_GetRandomAlive ( GetRandomInt ( 1, loringlib_GetPlayGameClients () ) );
-	
-		if ( !loringlib_IsValidClient__PlayGame ( player ) ||
-			g_PGameData[player].safeHuman )
+	//	player = loringlib_GetRandomAlive ( GetRandomInt ( 1, loringlib_GetPlayGameClients () ) );
+
+		player = getClientWithMostQueuePoints ();
+
+		if ( !loringlib_IsValidClient__PlayGame ( player ) )
 			continue;
 		
 	//	INFECT_HumanToHale ( player, g_iChooseHaleIndex );
 		break;
 	}
-	
-	for ( int players; players < MAXPLAYERS + 1; players ++ )
-		if ( g_PGameData[players].safeHuman )
-			g_PGameData[players].safeHuman = false;
-	g_PGameData[player].safeHuman = true;
 	
 	return player;
 }

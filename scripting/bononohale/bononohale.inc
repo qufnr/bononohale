@@ -10,7 +10,6 @@ public APLRes AskPluginLoad2 ( Handle myself, bool late, char[] error, int err_m
 	CreateNative ( "NONOHALE_IsGameFindHale", Native_IsGameFindHale );
 	
 	CreateNative ( "NONOHALE_IsClientHale", Native_IsClientHale );
-	CreateNative ( "NONOHALE_IsClientSafeHuman", Native_IsClientSafeHuman );
 	CreateNative ( "NONOHALE_GetHaleIndex", Native_GetHaleIndex );
 	CreateNative ( "NONOHALE_GetHaleDamages", Native_GetHaleDamages );
 	CreateNative ( "NONOHALE_GetClientHaleIndex", Native_GetClientHaleIndex );
@@ -61,10 +60,6 @@ public int Native_IsGameFindHale ( Handle plugin, int params ) {
 
 public int Native_IsClientHale ( Handle plugin, int params ) {
 	return g_PGameData[GetNativeCell ( 1 )].hale;
-}
-
-public int Native_IsClientSafeHuman ( Handle plugin, int params ) {
-	return g_PGameData[GetNativeCell ( 1 )].safeHuman;
 }
 
 public int Native_GetHaleIndex ( Handle plugin, int params ) {

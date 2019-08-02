@@ -4,7 +4,7 @@
 #include <autoexecconfig>
 #include <soundlib>
 
-#define PLUGIN_VERSION	"1.0.3"
+#define PLUGIN_VERSION	"1.1"
 
 public Plugin myinfo = {
 	name = "CS:GO VS. Saxston Hale Mode"
@@ -50,10 +50,10 @@ enum struct PGameData {
 	bool haleRage;
 	int haleRageDmgs;
 	
-	bool safeHuman;
+	int damages;			//	보스가 입은 피해량
+	int attackDamages;		//	보스에게 입힌 피해량
 	
-	int damages;		//	보스가 입은 피해량
-	int attackDamages;	//	보스에게 입힌 피해량
+	int queuePoints;		//	큐 포인트
 	
 	bool jumpReady;
 	bool weightDownReady;
@@ -187,6 +187,7 @@ int g_iHaleClient = -1;
 #include "bononohale/misc.inc"
 #include "bononohale/sound.inc"
 #include "bononohale/baseskills.inc"
+#include "bononohale/queuepoint.inc"
 
 public void OnPluginStart () {
 	LoadTranslations ( "common.phrases.txt" );

@@ -22,6 +22,8 @@ public void EVENT_OnRoundEnd ( Event ev, const char[] name, bool dontBroadcast )
 	
 	GAME_RoundEndOnSetStatus ();
 	GAME_KillFindTimer ();
+	
+	QUEUEPOINT_CalcQueuePoints ();
 }
 
 public void EVENT_OnPlayerSpawn ( Event ev, const char[] name, bool dontBroadcast ) {

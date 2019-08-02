@@ -38,6 +38,8 @@ void INFECT_HumanToHale ( int player, int iHaleIndex ) {
 		TeleportEntity ( player, flOrigin, NULL_VECTOR, NULL_VECTOR );
 	}
 	
+	setClientQueuePoints ( player, 0 );
+	
 //	SOUND_OnPlayHaleSound ( player, HALE_SND_INDEX_INTRO );	//	Intro voice
 	
 	Call_StartForward ( g_hForwardHandle[FORWARD_ON_HUMAN_TO_HALE] );

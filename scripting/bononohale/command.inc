@@ -1,5 +1,7 @@
 void COMMAND_RegisterCommands () {
 	RegConsoleCmd ( "sm_bnnoption", COMMAND_OnCommandOptions, "Control of the options." );
+	RegConsoleCmd ( "sm_qp", COMMAND_OnCommandQueuePoint, "Print queue point to client." );
+	RegConsoleCmd ( "sm_queuepoint", COMMAND_OnCommandQueuePoint, "Print queue point to client." );
 	RegAdminCmd ( "sm_setstun", COMMAND_OnCommandSetStun, ADMFLAG_ROOT, "Set client to stun." );
 	RegAdminCmd ( "sm_setboss", COMMAND_OnCommandSetBoss, ADMFLAG_ROOT, "Set boss on this round." );
 	RegAdminCmd ( "sm_setrage", COMMAND_OnCommandSetRage, ADMFLAG_ROOT, "Set boss rage charge." );
@@ -207,4 +209,37 @@ public int menuOptionMenuHandler ( Menu menu, MenuAction action, int param1, int
 			COMMAND_OnCommandOptions ( param1, 0 );
 		}
 	}
+}
+
+public Action COMMAND_OnCommandQueuePoint ( int player, int args ) {
+	if ( player > 0 ) {
+		if ( args < 1 ) {
+			qufnrTools_ReplyToCommand ( player, "%t", "command_display_queuepoint", getClientQueuePoints ( player ) );
+			return Plugin_Handled;
+		}
+		
+		char szName[2][32];
+		GetCmdArg ( 1, szName[0], sizeof szName[] );
+		int iTarget = -1;
+		for ( int cl = 1; cl <= MaxClients; cl ++ ) {
+			if ( loringlib_IsValidClient ( cl ) ) {
+				GetClientName ( cl, szName[1], sizeof szName[] );
+				if ( strcmp ( szName[0], szName[1], false ) != -1 ) {
+					iTarget = cl;
+				}
+			}
+		}
+		
+		if ( loringlib_IsValidClient ( iTarget ) ) {
+			qufnrTools_ReplyToCommand ( player, "%t", "command_display_target_queuepoint", iTarget, getClientQueuePoints ( iTarget ) );
+			return Plugin_Handled;
+		}
+		
+		else {
+			qufnrTools_ReplyToCommand ( player, "%t", "invalid_client_index" );
+			return Plugin_Handled;
+		}
+	}
+	
+	return Plugin_Handled;
 }

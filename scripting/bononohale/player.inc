@@ -15,9 +15,10 @@ public void OnClientPostAdminCheck ( int player ) {
 	g_PGameData[player].haleRage = false;
 	g_PGameData[player].haleRageDmgs = 0;
 	
-	g_PGameData[player].safeHuman = false;
 	g_PGameData[player].jumpReady = true;
 	g_PGameData[player].weightDownReady = true;
+	
+	g_PGameData[player].queuePoints = 0;
 	
 	g_PGameData[player].stun = false;
 	
