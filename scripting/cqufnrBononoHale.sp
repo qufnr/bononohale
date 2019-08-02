@@ -4,7 +4,7 @@
 #include <autoexecconfig>
 #include <soundlib>
 
-#define PLUGIN_VERSION	"1.0.2"
+#define PLUGIN_VERSION	"1.0.3"
 
 public Plugin myinfo = {
 	name = "CS:GO VS. Saxston Hale Mode"
@@ -84,6 +84,7 @@ enum struct ConfigData {
 	
 	bool displayBossHealth;
 	bool startOnRespawnHale;
+	bool displayRankOfDamage;
 	
 	float roundEndDelay;
 }

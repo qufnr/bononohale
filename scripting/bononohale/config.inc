@@ -9,6 +9,7 @@ ConVar g_cvarGoombaHaleDamage;
 ConVar g_cvarGoombaSound;
 ConVar g_cvarDisplayBossHealth;
 ConVar g_cvarStartOnRespawnHale;
+ConVar g_cvarDisplayRankOfDamage;
 
 void CONFIG_ReadFile () {
 	AutoExecConfig_SetFile ( "bononohale" );
@@ -22,6 +23,7 @@ void CONFIG_ReadFile () {
 	g_cvarGoombaSound = AutoExecConfig_CreateConVar ( "bononohale_goomba_sound", "1", "밟기 사운드를 활성화합니다.", CVAR_DEFAULT_FLAGS );
 	g_cvarDisplayBossHealth = AutoExecConfig_CreateConVar ( "bononohale_display_boss_health", "1", "헤일 체력을 표시합니다.", CVAR_DEFAULT_FLAGS );
 	g_cvarStartOnRespawnHale = AutoExecConfig_CreateConVar ( "bononohale_start_respawn_hale", "0", "라운드가 시작 하면 헤일이 스폰으로 이동합니다.", CVAR_DEFAULT_FLAGS );
+	g_cvarDisplayRankOfDamage = AutoExecConfig_CreateConVar ( "bononohale_display_rank_of_damage", "1", "라운드 종료 시 피해량 순위를 표시합니다.", CVAR_DEFAULT_FLAGS );
 	
 	g_cvarMinPlayers.AddChangeHook ( CONFIG_OnCvarChanged );
 	g_cvarHaleFindTime.AddChangeHook ( CONFIG_OnCvarChanged );
@@ -31,6 +33,7 @@ void CONFIG_ReadFile () {
 	g_cvarGoombaSound.AddChangeHook ( CONFIG_OnCvarChanged );
 	g_cvarDisplayBossHealth.AddChangeHook ( CONFIG_OnCvarChanged );
 	g_cvarStartOnRespawnHale.AddChangeHook ( CONFIG_OnCvarChanged );
+	g_cvarDisplayRankOfDamage.AddChangeHook ( CONFIG_OnCvarChanged );
 
 	AutoExecConfig_ExecuteFile ();
 	
@@ -52,6 +55,7 @@ public void OnConfigsExecuted () {
 	g_ConfigData.goombaSound = GetConVarBool ( g_cvarGoombaSound );
 	g_ConfigData.displayBossHealth = GetConVarBool ( g_cvarDisplayBossHealth );
 	g_ConfigData.startOnRespawnHale = GetConVarBool ( g_cvarStartOnRespawnHale );
+	g_ConfigData.displayRankOfDamage = GetConVarBool ( g_cvarDisplayRankOfDamage );
 	g_ConfigData.roundEndDelay = FindConVar ( "mp_round_restart_delay" ).FloatValue;
 	
 	PrintToServer ( "======================================" );
