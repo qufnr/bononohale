@@ -2,6 +2,7 @@ void COMMAND_RegisterCommands () {
 	RegConsoleCmd ( "sm_bnnoption", COMMAND_OnCommandOptions, "Control of the options." );
 	RegConsoleCmd ( "sm_qp", COMMAND_OnCommandQueuePoint, "Print queue point to client." );
 	RegConsoleCmd ( "sm_queuepoint", COMMAND_OnCommandQueuePoint, "Print queue point to client." );
+	RegConsoleCmd ( "sm_resetqp", COMMAND_OnCommandQueuePointReset, "Reset queue point for client." );
 	RegAdminCmd ( "sm_setstun", COMMAND_OnCommandSetStun, ADMFLAG_ROOT, "Set client to stun." );
 	RegAdminCmd ( "sm_setboss", COMMAND_OnCommandSetBoss, ADMFLAG_ROOT, "Set boss on this round." );
 	RegAdminCmd ( "sm_setrage", COMMAND_OnCommandSetRage, ADMFLAG_ROOT, "Set boss rage charge." );
@@ -280,6 +281,15 @@ public Action COMMAND_OnCommandQueuePoint ( int player, int args ) {
 			qufnrTools_ReplyToCommand ( player, "%t", "invalid_client_index" );
 			return Plugin_Handled;
 		}
+	}
+	
+	return Plugin_Handled;
+}
+
+public Action COMMAND_OnCommandQueuePointReset ( int player, int args ) {
+	if ( player > 0 ) {
+		setClientQueuePoints ( player, 0 );
+		qufnrTools_PrintToChat ( player, "%t", "command_queuepoint_reset" );
 	}
 	
 	return Plugin_Handled;

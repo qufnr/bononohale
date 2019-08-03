@@ -75,6 +75,7 @@ void PLAYER_WriteOptionData ( int player ) {
 		if ( kv.ImportFromFile ( szPath ) ) {
 			kv.SetNum ( "togglemusic", g_POptions[player].musicToggle );
 			kv.SetNum ( "displaydamages", g_POptions[player].displayDamages );
+			kv.SetNum ( "displaybosshealth", g_POptions[player].displayBossHealth );
 			
 			kv.ExportToFile ( szPath );
 		}

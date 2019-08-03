@@ -4,7 +4,7 @@
 #include <autoexecconfig>
 #include <soundlib>
 
-#define PLUGIN_VERSION	"1.1.1"
+#define PLUGIN_VERSION	"1.1.2"
 
 public Plugin myinfo = {
 	name = "CS:GO VS. Saxston Hale Mode"
