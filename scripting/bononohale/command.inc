@@ -220,6 +220,47 @@ public Action COMMAND_OnCommandQueuePoint ( int player, int args ) {
 		
 		char szName[2][32];
 		GetCmdArg ( 1, szName[0], sizeof szName[] );
+		
+		if ( StrEqual ( szName[0], "rank", false ) ) {
+			int iPlayerArray[MAXPLAYERS + 1][2];
+			int iTemp[1][2];
+			
+			for ( int i = 1; i <= MaxClients; i ++ ) {
+				if ( loringlib_IsValidClient ( i ) ) {
+					iPlayerArray[i][0] = i;
+					iPlayerArray[i][1] = getClientQueuePoints ( i );
+				}
+				else {
+					iPlayerArray[i][0] = -1;
+					iPlayerArray[i][1] = -1;
+				}
+			}
+			
+			for ( int y = MaxClients + 1; y > 0; y -- ) {
+				for ( int z = 0; z < y; z ++ ) {
+					if ( iPlayerArray[z][1] < iPlayerArray[z + 1][1] ) {
+						iTemp[0][1] = iPlayerArray[z][1];
+						iPlayerArray[z][1] = iPlayerArray[z + 1][1];
+						iPlayerArray[z + 1][1] = iTemp[0][1];
+					
+						iTemp[0][0] = iPlayerArray[z][0];
+						iPlayerArray[z][0] = iPlayerArray[z + 1][0];
+						iPlayerArray[z + 1][0] = iTemp[0][0];
+					}
+				}
+			}
+			
+			qufnrTools_ReplyToCommand ( player, "%t", "command_queuepoint_board" );
+			for ( int i = 0; i < 5; i ++ ) {
+				if ( loringlib_IsValidClient ( iPlayerArray[i][0] ) )
+					qufnrTools_ReplyToCommand ( player, "%t", "command_queuepoint_board_format", i + 1, iPlayerArray[i][0], iPlayerArray[i][1] );
+				else
+					qufnrTools_ReplyToCommand ( player, "%t", "command_queuepoint_board_format_null", i + 1 );
+			}
+			
+			return Plugin_Handled;
+		}
+		
 		int iTarget = -1;
 		for ( int cl = 1; cl <= MaxClients; cl ++ ) {
 			if ( loringlib_IsValidClient ( cl ) ) {
