@@ -1,4 +1,6 @@
-
+void GAME_ResetHaleClient () {
+	g_iHaleClient = -1;
+}
 
 void GAME_RoundEndOnSetStatus () {
 	GAME_SetDefaultStatus ();
@@ -36,10 +38,21 @@ void GAME_KillFindTimer () {
 void GAME_FindStart () {
 	GAME_SetDefaultStatus ();
 	
+	if ( GameRules_GetProp ( "m_bWarmupPeriod" ) == 1 )
+		g_GameStatus.gameWarmup = true;
+	else
+		g_GameStatus.gameWarmup = false;
+
+	if ( loringlib_GetPlayGameClients () < g_ConfigData.minPlayers )
+		g_GameStatus.playerWaiting = true;
+	else
+		g_GameStatus.playerWaiting = false;
+	
+	
 	g_GameStatus.gameFindHale = true;
 	g_iChooseHaleIndex = -1;
 	g_iHaleClient = GAME_GetRandomPlayer ();
-	
+		
 	if ( loringlib_IsValidClient ( g_iHaleClient ) ) {
 		if ( !IsFakeClient ( g_iHaleClient ) )
 			qufnrTools_PrintToChat ( g_iHaleClient, "%t", "system_you_hale" );
@@ -70,8 +83,8 @@ public Action GAME_FindStartPost ( Handle hndl ) {
 
 	g_iFindTime = g_ConfigData.findTime;
 	
-	if ( loringlib_GetPlayGameClients () < g_ConfigData.minPlayers )
-		g_GameStatus.playerWaiting = true;
+//	if ( loringlib_GetPlayGameClients () < g_ConfigData.minPlayers )
+//		g_GameStatus.playerWaiting = true;
 	
 	if ( g_hFindTimer == null ) {
 		g_hFindTimer = CreateTimer ( 1.0, GAME_FindCountDown, _, TIMER_FLAG_NO_MAPCHANGE | TIMER_REPEAT );
@@ -89,7 +102,17 @@ public Action GAME_FindStartPost ( Handle hndl ) {
 
 public Action GAME_FindCountDown ( Handle hndl ) {
 	
+	if ( g_GameStatus.gameEnd ) {
+		g_hFindTimer = null;
+		return Plugin_Stop;
+	}
+	
 	SetHudTextParams ( -1.0, 0.25, 1.1, 255, 255, 255, 255, 0, 0.0, 0.0, 0.0 );
+	
+	if ( g_GameStatus.gameWarmup ) {
+		loringlib_ShowSyncHudTextToAll ( g_hHudSyncHndl[HUDSYNC_FIND_TEXT], "%t", "hudtext_warmup" );
+		return Plugin_Continue;
+	}
 	
 	if ( g_GameStatus.playerWaiting ) {
 		
@@ -262,7 +285,10 @@ void GAME_DisplayHaleDamage () {
 stock int GAME_GetRandomPlayer () {
 	if ( GetClientCount () <= 1 )
 		return -1;
-
+	
+	if ( g_GameStatus.gameWarmup || g_GameStatus.playerWaiting )
+		return -1;
+	
 	int player = -1;
 	
 	while ( true ) {

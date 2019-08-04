@@ -72,8 +72,8 @@ void INFECT_HurtOnHaleNoTagging ( int player ) {
 void INFECT_HaleUnhook ( int player ) {
 	if ( loringlib_IsValidClient ( player ) ) {
 		SDKUnhook ( player, SDKHook_WeaponCanUse, INFECT_OnHaleBlockUseWeapon );
-		if ( g_PGameData[player].hale )
-			g_PGameData[player].hale = false;
+	//	if ( g_PGameData[player].hale )
+	//		g_PGameData[player].hale = false;
 	}
 }
 

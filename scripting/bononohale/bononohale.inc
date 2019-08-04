@@ -8,6 +8,7 @@ public APLRes AskPluginLoad2 ( Handle myself, bool late, char[] error, int err_m
 	CreateNative ( "NONOHALE_IsGameEnd", Native_IsGameEnd );
 	CreateNative ( "NONOHALE_IsGamePlayerWaiting", Native_IsGamePlayerWaiting );
 	CreateNative ( "NONOHALE_IsGameFindHale", Native_IsGameFindHale );
+	CreateNative ( "NONOHALE_IsGameWarmup", Native_IsGameWarmup );
 	
 	CreateNative ( "NONOHALE_IsClientHale", Native_IsClientHale );
 	CreateNative ( "NONOHALE_GetHaleIndex", Native_GetHaleIndex );
@@ -61,6 +62,10 @@ public int Native_IsGamePlayerWaiting ( Handle plugin, int params ) {
 
 public int Native_IsGameFindHale ( Handle plugin, int params ) {
 	return g_GameStatus.gameFindHale;
+}
+
+public int Native_IsGameWarmup ( Handle plugin, int params ) {
+	return g_GameStatus.gameWarmup;
 }
 
 public int Native_IsClientHale ( Handle plugin, int params ) {

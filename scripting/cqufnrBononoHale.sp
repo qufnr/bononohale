@@ -4,10 +4,10 @@
 #include <autoexecconfig>
 #include <soundlib>
 
-#define PLUGIN_VERSION	"1.1.3"
+#define PLUGIN_VERSION	"1.1.4"
 
 public Plugin myinfo = {
-	name = "CS:GO VS. Saxston Hale Mode"
+	name = "CS:GO VS. Saxston Hale Mode a.k.a Counter-Strike: Freak Offensive"
 	, author = "qufnr"
 	, description = ""
 	, version = PLUGIN_VERSION
@@ -36,6 +36,7 @@ enum struct GameStatus {
 	bool gameEnd;
 	bool gameFindHale;
 	bool playerWaiting;
+	bool gameWarmup;
 }
 GameStatus g_GameStatus;
 
@@ -205,6 +206,7 @@ public void OnServerLoad () {
 	CONFIG_ReadHaleData ();
 	WEAPON_ReadWeaponData ();
 	
+	GAME_ResetHaleClient ();
 	GAME_SetDefaultStatus ();
 	
 	MISC_CreateGlobalTimer ();
