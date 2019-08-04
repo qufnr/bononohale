@@ -4,7 +4,7 @@
 #include <autoexecconfig>
 #include <soundlib>
 
-#define PLUGIN_VERSION	"1.1.2"
+#define PLUGIN_VERSION	"1.1.3"
 
 public Plugin myinfo = {
 	name = "CS:GO VS. Saxston Hale Mode"
@@ -171,6 +171,7 @@ Handle g_hForwardHandle[13] = { null, ... };
 
 int g_iChooseHaleIndex = -1;
 int g_iHaleClient = -1;
+char g_strMusic[256];
 
 #include "bononohale/bononohale.inc"	//	API
 

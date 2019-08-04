@@ -199,9 +199,13 @@ public int menuOptionMenuHandler ( Menu menu, MenuAction action, int param1, int
 		case MenuAction_End: delete menu;
 		case MenuAction_Select: {
 			switch ( param2 ) {
-				case 0:
+				case 0: {
 					g_POptions[param1].musicToggle = !g_POptions[param1].musicToggle;
-				case 1:
+					if ( !g_POptions[param1].musicToggle ) {
+						if ( g_strMusic[0] != EOS )
+							StopSound ( param1, SNDCHAN_AUTO, g_strMusic );
+					}
+				} case 1:
 					g_POptions[param1].displayDamages = !g_POptions[param1].displayDamages;
 				case 2:
 					g_POptions[param1].displayBossHealth = !g_POptions[param1].displayBossHealth;

@@ -11,32 +11,31 @@ void SOUND_OnClearMusicTimer () {
 void SOUND_OnPlayHaleMusic ( int haleIndex ) {
 	if ( haleIndex > -1 ) {
 
-		char szMusic[256];
 		int iRandom = GetRandomInt ( 1, MAX_HALE_MUSIC ) - 1;
-		strcopy ( szMusic, sizeof szMusic, g_szHaleMusic[haleIndex][iRandom] );
-		if ( szMusic[0] == EOS ) {
-			strcopy ( szMusic, sizeof szMusic, g_szHaleMusic[haleIndex][0] );
-			if ( szMusic[0] == EOS )
+		strcopy ( g_strMusic, sizeof g_strMusic, g_szHaleMusic[haleIndex][iRandom] );
+		if ( g_strMusic[0] == EOS ) {
+			strcopy ( g_strMusic, sizeof g_strMusic, g_szHaleMusic[haleIndex][0] );
+			if ( g_strMusic[0] == EOS )
 				return;
 		}
 		
 		
-		Handle hMusicHandle = OpenSoundFile ( szMusic );
+		Handle hMusicHandle = OpenSoundFile ( g_strMusic );
 		
 		if ( hMusicHandle != null && g_hHaleMusicTimer == null ) {
 		
 			for ( int c = 1; c <= MaxClients; c ++ ) {
 				if ( loringlib_IsValidClient ( c ) && !IsFakeClient ( c ) &&
 				g_POptions[c].musicToggle )
-					EmitSoundToClient ( c, szMusic, SOUND_FROM_PLAYER, SNDCHAN_AUTO, SNDLEVEL_NONE );
+					EmitSoundToClient ( c, g_strMusic, SOUND_FROM_PLAYER, SNDCHAN_AUTO, SNDLEVEL_NONE );
 			}
 			
 			DataPack data;
 			g_hHaleMusicTimer = CreateDataTimer ( 0.1, SOUND_HaleMusicRepeat, data, TIMER_FLAG_NO_MAPCHANGE | TIMER_REPEAT );
 			data.WriteFloat ( GetGameTime () + ( GetSoundLengthFloat ( hMusicHandle ) + 1.0 ) );
-			data.WriteString ( szMusic );
+			data.WriteString ( g_strMusic );
 			
-			PrintToServer ( "Play Music: %s Length %.2f", szMusic, GetSoundLengthFloat ( hMusicHandle ) );
+			PrintToServer ( "Play Music: %s Length %.2f", g_strMusic, GetSoundLengthFloat ( hMusicHandle ) );
 		}
 		
 		delete hMusicHandle;

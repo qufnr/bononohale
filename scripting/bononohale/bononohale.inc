@@ -20,6 +20,11 @@ public APLRes AskPluginLoad2 ( Handle myself, bool late, char[] error, int err_m
 	CreateNative ( "NONOHALE_SetDamages", Native_SetDamages );
 	CreateNative ( "NONOHALE_AddDamages", Native_AddDamages );
 	
+	CreateNative ( "NONOHALE_GetClientQueuePoints", Native_GetClientQueuePoints );
+	CreateNative ( "NONOHALE_SetClientQueuePoints", Native_SetClientQueuePoints );
+	
+	CreateNative ( "NONOHALE_GetPlayMusic", Native_GetPlayMusic );
+	
 	g_hForwardHandle[FORWARD_ON_ROUND_START_COUNT_DOWN] = CreateGlobalForward ( "NONOHALE_OnRoundStartCountdown", ET_Ignore, Param_Cell, Param_Cell );
 	g_hForwardHandle[FORWARD_ON_ROUND_START_COUNT_DOWN_LAST_TICK] = CreateGlobalForward ( "NONOHALE_OnRoundStartCountdownLastTick", ET_Ignore, Param_Cell );
 	g_hForwardHandle[FORWARD_ON_HUMAN_TO_HALE] = CreateGlobalForward ( "NONOHALE_OnHumanToHale", ET_Ignore, Param_Cell, Param_Cell );
@@ -114,5 +119,19 @@ public int Native_AddDamages ( Handle plugin, int params ) {
 		g_PGameData[GetNativeCell ( 1 )].attackDamages += GetNativeCell ( 2 );
 	}
 	
+	return 1;
+}
+
+public int Native_GetClientQueuePoints ( Handle plugin, int params ) {
+	return getClientQueuePoints ( GetNativeCell ( 1 ) );
+}
+
+public int Native_SetClientQueuePoints ( Handle plugin, int params ) {
+	setClientQueuePoints ( GetNativeCell ( 1 ), GetNativeCell ( 2 ) );
+	return 1;
+}
+
+public int Native_GetPlayMusic ( Handle plugin, int params ) {
+	SetNativeString ( 1, g_strMusic, GetNativeCell ( 2 ) );
 	return 1;
 }

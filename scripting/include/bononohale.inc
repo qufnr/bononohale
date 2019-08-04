@@ -113,6 +113,30 @@ native void NONOHALE_SetDamages ( int client, int setValue );
 native void NONOHALE_AddDamages ( int client, int addValue );
 
 /**
+ * 클라이언트의 큐 포인트를 반환합니다.
+ *
+ * @param client
+ * @return queue points
+ */
+native int NONOHALE_GetClientQueuePoints ( int client );
+
+/**
+ * 클라이언트의 큐 포인트를 설정합니다.
+ *
+ * @param client
+ * @param value
+ */
+native void NONOHALE_SetClientQueuePoints ( int client, int value );
+
+/**
+ * 재생중인 음악을 구합니다.
+ *
+ * @param music
+ * @param maxlen
+ */
+native void NONOHALE_GetPlayMusic ( const char[] music, int maxlen );
+
+/**
  * 헤일을 찾을 때 틱(초)마다 호출합니다.
  *
  * @param ticks		카운트 수
