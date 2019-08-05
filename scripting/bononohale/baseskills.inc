@@ -264,9 +264,9 @@ stock bool BASESKILL_RangePlayerStun ( int player, float flDist = 50.0, float st
 	return bResult;
 }
 
-stock void BASESKILL_SetPlayerStun ( int victim, int attacker, float& stunTime, int& damage ) {
+stock void BASESKILL_SetPlayerStun ( int victim, int attacker, float stunTime = 5.0, int damage = 0 ) {
 	if ( loringlib_IsValidClient__PlayGame ( victim ) && loringlib_IsValidClient ( attacker ) ) {
-		if ( !g_PGameData[victim].hale && !g_PGameData[victim].stun ) {
+		if ( !g_PGameData[victim].stun ) {
 			
 			Action action = Plugin_Continue;
 			Call_StartForward ( g_hForwardHandle[FORWARD_ON_CLIENT_STUN] );

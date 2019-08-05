@@ -39,7 +39,6 @@ public void EVENT_OnPlayerHurt ( Event ev, const char[] name, bool dontBroadcast
 	int iDamage = ev.GetInt ( "dmg_health" );
 	
 	INFECT_HurtOnHaleDamage ( victim, attacker, iDamage );
-	INFECT_HurtOnHaleNoTagging ( victim );
 	SOUND_OnPlayHalePainSound ( victim, iDamage );
 }
 

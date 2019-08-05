@@ -62,13 +62,6 @@ public Action INFECT_OnHaleBlockUseWeapon ( int player, int weapon ) {
 	return Plugin_Continue;
 }
 
-void INFECT_HurtOnHaleNoTagging ( int player ) {
-	if ( loringlib_IsValidClient ( player ) && g_PGameData[player].hale ) {
-		SetEntPropFloat ( player, Prop_Send, "m_flStamina", 0.0 );
-		SetEntPropFloat ( player, Prop_Send, "m_flVelocityModifier", 1.0 );
-	}
-}
-
 void INFECT_HaleUnhook ( int player ) {
 	if ( loringlib_IsValidClient ( player ) ) {
 		SDKUnhook ( player, SDKHook_WeaponCanUse, INFECT_OnHaleBlockUseWeapon );
