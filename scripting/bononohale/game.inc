@@ -82,6 +82,7 @@ void GAME_FindStart () {
 public Action GAME_FindStartPost ( Handle hndl ) {
 
 	g_iFindTime = g_ConfigData.findTime;
+	g_iChooseHaleIndex = GetRandomInt ( 1, g_iHaleData ) - 1
 	
 //	if ( loringlib_GetPlayGameClients () < g_ConfigData.minPlayers )
 //		g_GameStatus.playerWaiting = true;
@@ -153,11 +154,10 @@ public Action GAME_FindCountDown ( Handle hndl ) {
 	loringlib_ShowSyncHudTextToAll ( g_hHudSyncHndl[HUDSYNC_FIND_TEXT], "%t", "hudtext_find_hale", g_iFindTime );
 	g_iFindTime --;
 	
-	if ( g_iChooseHaleIndex == -1 ) {
+	if ( g_iChooseHaleIndex > -1 ) {
 		if ( 7 == g_iFindTime ) {
-			g_iChooseHaleIndex = GetRandomInt ( 1, g_iHaleData ) - 1;
 			SOUND_OnPlayHaleCountdownIntroSound ( g_iChooseHaleIndex );
-			PrintToServer ( "g_iChooseHaleIndex: %d", g_iChooseHaleIndex );
+		//	PrintToServer ( "g_iChooseHaleIndex: %d", g_iChooseHaleIndex );
 		}
 	}
 	

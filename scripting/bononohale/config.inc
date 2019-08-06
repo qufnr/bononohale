@@ -87,6 +87,8 @@ void CONFIG_ReadHaleData () {
 				if ( IsModelPrecached ( g_HaleData[g_iHaleData].armsModel ) )
 					PrecacheModel ( g_HaleData[g_iHaleData].armsModel, true );
 			
+			kv.GetString ( "description", g_HaleData[g_iHaleData].description, sizeof g_HaleData[].description );
+			
 			g_HaleData[g_iHaleData].rageRange = kv.GetNum ( "ragerange" );
 			
 			g_HaleData[g_iHaleData].health = kv.GetNum ( "health" );

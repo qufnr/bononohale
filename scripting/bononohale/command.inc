@@ -109,11 +109,6 @@ public Action COMMAND_OnCommandSetBoss ( int p, int args ) {
 			return Plugin_Handled;
 		}
 		
-		if ( g_iChooseHaleIndex != -1 ) {
-			qufnrTools_ReplyToCommand ( p, "%t", "command_setboss_already_set", g_HaleData[g_iChooseHaleIndex].name );
-			return Plugin_Handled;
-		}
-		
 		g_iChooseHaleIndex = iHaleIndex;
 		qufnrTools_ReplyToCommand ( p, "%t", "command_setboss_success", g_HaleData[iHaleIndex].name );
 	}

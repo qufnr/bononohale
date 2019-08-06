@@ -4,7 +4,7 @@
 #include <autoexecconfig>
 #include <soundlib>
 
-#define PLUGIN_VERSION	"1.1.7"
+#define PLUGIN_VERSION	"1.1.8"
 
 public Plugin myinfo = {
 	name = "CS:GO VS. Saxston Hale Mode a.k.a Counter-Strike: Freak Offensive"
@@ -99,6 +99,7 @@ enum struct HaleData {
 	char name[64];
 	char model[256];
 	char armsModel[256];
+	char description[1024];
 	int health;
 	int healthMath;
 	int armor;

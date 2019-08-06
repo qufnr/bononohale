@@ -60,6 +60,10 @@ void BASESKILL_OnHaleWeightDown ( int player, int key ) {
 				GetClientEyeAngles ( player, flAngles );
 				
 				if ( flAngles[0] > 60.0 && ( key & IN_DUCK ) ) {
+				
+					if ( g_PGameData[player].stun )
+						return;
+				
 					if ( !g_bBaseSkillWeightDown ) {
 						iWeightDownAction[player] = 1;
 						
@@ -147,6 +151,9 @@ void BASESKILL_OnHaleJump ( int player, int key ) {
 		GetClientEyeAngles ( player, flAngles );
 		
 		if ( ( ( key & IN_DUCK ) && ( flAngles[0] < -45.0 ) ) || ( key & IN_ATTACK2 ) ) {
+			if ( g_PGameData[player].stun )
+				return;
+			
 			if ( !g_bBaseSkillJumpHold ) {
 				g_bBaseSkillJumpHold = true;
 				
@@ -192,6 +199,9 @@ void BASESKILL_OnHaleRageEnable ( int player ) {
 		if ( g_HaleData[iHaleIndex].rageRange > 0 && g_HaleData[iHaleIndex].rageRange <= g_PGameData[player].haleRageDmgs ) {
 
 			if ( !g_PGameData[player].haleRage ) {
+				
+				if ( g_PGameData[player].stun )
+					return;
 				
 				float flDist = g_HaleData[iHaleIndex].distOfRage;
 				float flDuration = g_HaleData[iHaleIndex].durationOfRage;

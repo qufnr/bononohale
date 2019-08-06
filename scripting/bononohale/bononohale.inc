@@ -16,6 +16,7 @@ public APLRes AskPluginLoad2 ( Handle myself, bool late, char[] error, int err_m
 	CreateNative ( "NONOHALE_GetClientHaleIndex", Native_GetClientHaleIndex );
 	CreateNative ( "NONOHALE_IsClientStun", Native_IsClientStun );
 	CreateNative ( "NONOHALE_GetPreFindHaleClient", Native_GetPreFindHaleClient );
+	CreateNative ( "NONOHALE_GetChooseHaleIndex", Native_GetChooseHaleIndex );
 	
 	CreateNative ( "NONOHALE_GetDamages", Native_GetDamages );
 	CreateNative ( "NONOHALE_SetDamages", Native_SetDamages );
@@ -27,6 +28,8 @@ public APLRes AskPluginLoad2 ( Handle myself, bool late, char[] error, int err_m
 	CreateNative ( "NONOHALE_GetPlayMusic", Native_GetPlayMusic );
 	
 	CreateNative ( "NONOHALE_SetPlayerStun", Native_SetPlayerStun );
+	
+	CreateNative ( "NONOHALE_GetHaleDescription", Native_GetHaleDescription );
 	
 	g_hForwardHandle[FORWARD_ON_ROUND_START_COUNT_DOWN] = CreateGlobalForward ( "NONOHALE_OnRoundStartCountdown", ET_Ignore, Param_Cell, Param_Cell );
 	g_hForwardHandle[FORWARD_ON_ROUND_START_COUNT_DOWN_LAST_TICK] = CreateGlobalForward ( "NONOHALE_OnRoundStartCountdownLastTick", ET_Ignore, Param_Cell );
@@ -146,4 +149,12 @@ public int Native_GetPlayMusic ( Handle plugin, int params ) {
 public int Native_SetPlayerStun ( Handle plugin, int params ) {
 	BASESKILL_SetPlayerStun ( GetNativeCell ( 1 ), GetNativeCell ( 2 ), GetNativeCell ( 3 ), GetNativeCell ( 4 ) );
 	return 1;
+}
+
+public int Native_GetHaleDescription ( Handle plugin, int params ) {
+	return SetNativeString ( 2, g_HaleData[GetNativeCell ( 1 )].description, GetNativeCell ( 3 ) );
+}
+
+public int Native_GetChooseHaleIndex ( Handle plugin, int params ) {
+	return g_iChooseHaleIndex;
 }

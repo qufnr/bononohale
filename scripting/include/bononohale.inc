@@ -138,6 +138,16 @@ native int NONOHALE_GetClientQueuePoints ( int client );
 native int NONOHALE_SetPlayerStun ( int target, int attacker, float duration = 5.0, int damages = 0 );
 
 /**
+ * 헤일 설명을 구합니다.
+ *
+ * @param haleIndex
+ * @param buffer
+ * @param maxlen
+ * @return SP_ERROR_NONE on success, any other integer on failure.
+ */
+native int NONOHALE_GetHaleDescription ( int haleIndex, const char[] buffer, int maxlen );
+
+/**
  * 클라이언트의 큐 포인트를 설정합니다.
  *
  * @param client
@@ -152,6 +162,13 @@ native void NONOHALE_SetClientQueuePoints ( int client, int value );
  * @param maxlen
  */
 native void NONOHALE_GetPlayMusic ( const char[] music, int maxlen );
+
+/**
+ * 선택된 헤일 인덱스를 구합니다.
+ *
+ * @return g_iChooseHaleIndex
+ */
+native int NONOHALE_GetChooseHaleIndex ();
 
 /**
  * 헤일을 찾을 때 틱(초)마다 호출합니다.
