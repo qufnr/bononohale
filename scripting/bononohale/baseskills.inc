@@ -287,10 +287,10 @@ stock void BASESKILL_SetPlayerStun ( int victim, int attacker, float stunTime = 
 				loringlib_MakeDamage ( victim, attacker, damage, "prop_exploding_barrel", DMG_SHOCK );
 			
 			float flSpeed = loringlib_GetEntityLaggedmovement ( victim );
-			float flGravity = GetEntityGravity ( victim );
+		//	float flGravity = GetEntityGravity ( victim );
 			
 			loringlib_SetEntityLaggedmovement ( victim, 0.5 );
-			SetEntityGravity ( victim, 5.0 );
+		//	SetEntityGravity ( victim, 5.0 );
 			
 			float flEye[3];
 			GetClientEyePosition ( victim, flEye );
@@ -301,7 +301,7 @@ stock void BASESKILL_SetPlayerStun ( int victim, int attacker, float stunTime = 
 			CreateDataTimer ( stunTime, BASESKILL_SetPlayerStunToggle, data, TIMER_FLAG_NO_MAPCHANGE );
 			data.WriteCell ( GetClientSerial ( victim ) );
 			data.WriteFloat ( flSpeed );
-			data.WriteFloat ( flGravity );
+		//	data.WriteFloat ( flGravity );
 		
 		}
 	}
@@ -318,13 +318,13 @@ public Action BASESKILL_SetPlayerStunToggle ( Handle hndl, DataPack data ) {
 	}
 	
 	float flSpeed = data.ReadFloat ();
-	float flGravity = data.ReadFloat ();
+//	float flGravity = data.ReadFloat ();
 	
 	g_PGameData[p].stun = false;
 	ClientCommand ( p, "firstperson" );
 	
 	loringlib_SetEntityLaggedmovement ( p, flSpeed );
-	SetEntityGravity ( p, flGravity );
+//	SetEntityGravity ( p, flGravity );
 	
 //	delete data;
 	return Plugin_Stop;

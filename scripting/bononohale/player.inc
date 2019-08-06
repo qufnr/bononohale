@@ -138,6 +138,9 @@ public Action OnPlayerRunCmd ( int player, int& keys, int& impulse, float vel[3]
 			if ( ( keys & IN_ATTACK2 ) )
 				keys &= ~IN_ATTACK2;
 			
+			if ( ( keys & IN_JUMP ) )
+				keys &= ~IN_JUMP;
+			
 			bChange = true;
 		}
 		else {
