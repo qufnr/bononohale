@@ -6,6 +6,7 @@ void COMMAND_RegisterCommands () {
 	RegAdminCmd ( "sm_setstun", COMMAND_OnCommandSetStun, ADMFLAG_ROOT, "Set client to stun." );
 	RegAdminCmd ( "sm_setboss", COMMAND_OnCommandSetBoss, ADMFLAG_ROOT, "Set boss on this round." );
 	RegAdminCmd ( "sm_setrage", COMMAND_OnCommandSetRage, ADMFLAG_ROOT, "Set boss rage charge." );
+	RegAdminCmd ( "sm_setqp", COMMAND_OnCommandSetQueuePoint, ADMFLAG_ROOT, "Set queue point for client." );
 	
 	AddCommandListener ( COMMAND_OnPressDropKey, "drop" );
 }
@@ -86,7 +87,7 @@ public Action COMMAND_OnCommandSetStun ( int p, int args ) {
 		BASESKILL_SetPlayerStun ( target, p, flTime, iDamage );
 		
 		qufnrTools_ReplyToCommand ( p, "%t", "command_setstun_success", target );
-		qufnrTools_PrintToChat ( p, "%t", "command_setstun_success_target" );
+		qufnrTools_PrintToChat ( target, "%t", "command_setstun_success_target" );
 	}
 	
 	return Plugin_Handled;
@@ -173,6 +174,34 @@ public Action COMMAND_OnCommandSetRage ( int p, int args ) {
 				qufnrTools_ReplyToCommand ( p, "%t", "command_setrage_target_not_boss" );
 				return Plugin_Handled;
 			}
+		}
+	}
+	
+	return Plugin_Handled;
+}
+
+public Action COMMAND_OnCommandSetQueuePoint ( int p, int args ) {
+	if ( p > 0 ) {
+		if ( args < 2 ) {
+			qufnrTools_ReplyToCommand ( p, "%t", "command_setqp_usage" );
+			return Plugin_Handled;
+		}
+		
+		char szName[32];
+		GetCmdArg ( 1, szName, sizeof szName );
+		int iTarget = FindTarget ( p, szName, false );
+		
+		if ( loringlib_IsValidClient ( iTarget ) ) {
+			char szValue[16];
+			GetCmdArg ( 2, szValue, sizeof szValue );
+			int iValue = StringToInt ( szValue );
+			
+			setClientQueuePoints ( iTarget, iValue );
+			
+			qufnrTools_ReplyToCommand ( p, "%t", "command_setqp_success", iTarget, iValue );
+			qufnrTools_PrintToChat ( iTarget, "%t", "command_setqp_success_target", iValue );
+			
+			return Plugin_Handled;
 		}
 	}
 	

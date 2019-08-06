@@ -3,6 +3,7 @@ void INFECT_HumanToHale ( int player, int iHaleIndex ) {
 	
 	loringlib_RemoveWeaponSlot ( player, CS_SLOT_PRIMARY );
 	loringlib_RemoveWeaponSlot ( player, CS_SLOT_SECONDARY );
+	loringlib_RemoveWeaponSlot ( player, CS_SLOT_GRENADE );
 	
 	GivePlayerItem ( player, "weapon_knife" );
 	FakeClientCommand ( player, "use weapon_knife" );

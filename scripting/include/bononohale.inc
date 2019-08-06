@@ -44,6 +44,13 @@ native bool NONOHALE_IsGamePlayerWaiting ();
 native bool NONOHALE_IsGameFindHale ();
 
 /**
+ * 준비 시간인지 채크합니다.
+ *
+ * @return 준비 시간일 경우 true를 반환합니다.
+ */
+native bool NONOHALE_IsGameWarmup ();
+
+/**
  * 클라이언트가 헤일인지 채크합니다.
  *
  * @param client		클라이언트 인덱스
@@ -119,6 +126,16 @@ native void NONOHALE_AddDamages ( int client, int addValue );
  * @return queue points
  */
 native int NONOHALE_GetClientQueuePoints ( int client );
+
+/**
+ * 클라이언트를 스턴 합니다.
+ *
+ * @param target
+ * @param attacker
+ * @param duration
+ * @param damages
+ */
+native int NONOHALE_SetPlayerStun ( int target, int attacker, float duration = 5.0, int damages = 0 );
 
 /**
  * 클라이언트의 큐 포인트를 설정합니다.
