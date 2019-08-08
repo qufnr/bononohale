@@ -17,6 +17,7 @@ public APLRes AskPluginLoad2 ( Handle myself, bool late, char[] error, int err_m
 	CreateNative ( "NONOHALE_IsClientStun", Native_IsClientStun );
 	CreateNative ( "NONOHALE_GetPreFindHaleClient", Native_GetPreFindHaleClient );
 	CreateNative ( "NONOHALE_GetChooseHaleIndex", Native_GetChooseHaleIndex );
+	CreateNative ( "NONOHALE_GetClientSoundToggle", Native_GetClientSoundToggle );
 	
 	CreateNative ( "NONOHALE_GetDamages", Native_GetDamages );
 	CreateNative ( "NONOHALE_SetDamages", Native_SetDamages );
@@ -26,9 +27,11 @@ public APLRes AskPluginLoad2 ( Handle myself, bool late, char[] error, int err_m
 	CreateNative ( "NONOHALE_SetClientQueuePoints", Native_SetClientQueuePoints );
 	
 	CreateNative ( "NONOHALE_GetPlayMusic", Native_GetPlayMusic );
+	CreateNative ( "NONOHALE_StopPlayMusic", Native_StopPlayMusic );
 	
 	CreateNative ( "NONOHALE_SetPlayerStun", Native_SetPlayerStun );
 	
+	CreateNative ( "NONOHALE_GetHaleName", Native_GetHaleName );
 	CreateNative ( "NONOHALE_GetHaleDescription", Native_GetHaleDescription );
 	
 	g_hForwardHandle[FORWARD_ON_ROUND_START_COUNT_DOWN] = CreateGlobalForward ( "NONOHALE_OnRoundStartCountdown", ET_Ignore, Param_Cell, Param_Cell );
@@ -38,6 +41,7 @@ public APLRes AskPluginLoad2 ( Handle myself, bool late, char[] error, int err_m
 	g_hForwardHandle[FORWARD_ON_HALE_JUMP_READY] = CreateGlobalForward ( "NONOHALE_OnHaleJumpReady", ET_Ignore, Param_Cell, Param_Cell );
 	g_hForwardHandle[FORWARD_ON_HALE_JUMP] = CreateGlobalForward ( "NONOHALE_OnHaleJump", ET_Ignore, Param_Cell, Param_Cell );
 	g_hForwardHandle[FORWARD_ON_HALE_RAGE] = CreateGlobalForward ( "NONOHALE_OnHaleRage", ET_Hook, Param_Cell, Param_Cell, Param_FloatByRef, Param_FloatByRef );
+	g_hForwardHandle[FORWARD_ON_HALE_RAGE_POST] = CreateGlobalForward ( "NONOHALE_OnHaleRagePost", ET_Ignore, Param_Cell, Param_Cell, Param_Float, Param_Float );
 	g_hForwardHandle[FORWARD_ON_HALE_RAGE_END] = CreateGlobalForward ( "NONOHALE_OnHaleRageEnd", ET_Ignore, Param_Cell, Param_Cell );
 	g_hForwardHandle[FORWARD_ON_HALE_WEIGHT_DOWN] = CreateGlobalForward ( "NONOHALE_OnHaleWeightDown", ET_Ignore, Param_Cell );
 	g_hForwardHandle[FORWARD_ON_HALE_WEIGHT_DOWN_LANDING] = CreateGlobalForward ( "NONOHALE_OnHaleWeightDownLanding", ET_Ignore, Param_Cell );
@@ -146,9 +150,33 @@ public int Native_GetPlayMusic ( Handle plugin, int params ) {
 	return 1;
 }
 
+public int Native_StopPlayMusic ( Handle plugin, int params ) {
+	if ( g_strMusic[0] != EOS ) {
+		if ( g_hHaleMusicTimer != null ) {
+			for ( int cl = 1; cl < MaxClients; cl ++ ) {
+				if ( loringlib_IsValidClient ( cl ) ) {
+					StopSound ( cl, SNDCHAN_AUTO, g_strMusic );
+				}
+			}
+			
+			strcopy ( g_strMusic, sizeof g_strMusic, "" );
+			KillTimer ( g_hHaleMusicTimer );
+			g_hHaleMusicTimer = null;
+			
+			return 1;
+		}
+	}
+	
+	return 0;
+}
+
 public int Native_SetPlayerStun ( Handle plugin, int params ) {
 	BASESKILL_SetPlayerStun ( GetNativeCell ( 1 ), GetNativeCell ( 2 ), GetNativeCell ( 3 ), GetNativeCell ( 4 ) );
 	return 1;
+}
+
+public int Native_GetHaleName ( Handle plugin, int params ) {
+	return SetNativeString ( 2, g_HaleData[GetNativeCell ( 1 )].name, GetNativeCell ( 3 ) );
 }
 
 public int Native_GetHaleDescription ( Handle plugin, int params ) {
@@ -157,4 +185,8 @@ public int Native_GetHaleDescription ( Handle plugin, int params ) {
 
 public int Native_GetChooseHaleIndex ( Handle plugin, int params ) {
 	return g_iChooseHaleIndex;
+}
+
+public int Native_GetClientSoundToggle ( Handle plugin, int params ) {
+	return g_POptions[GetNativeCell ( 1 )].musicToggle;
 }

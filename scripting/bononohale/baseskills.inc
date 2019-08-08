@@ -225,6 +225,13 @@ void BASESKILL_OnHaleRageEnable ( int player ) {
 					BASESKILL_RangePlayerStun ( player, flDist );
 				
 				CreateTimer ( flDuration, BASESKILL_RageToggle, GetClientSerial ( player ), TIMER_FLAG_NO_MAPCHANGE );
+				
+				Call_StartForward ( g_hForwardHandle[FORWARD_ON_HALE_RAGE_POST] );
+				Call_PushCell ( player );
+				Call_PushCell ( g_PGameData[player].haleIndex );
+				Call_PushFloat ( flDist );
+				Call_PushFloat ( flDuration );
+				Call_Finish ();
 			}
 		}
 	}

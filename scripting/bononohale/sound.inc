@@ -1,6 +1,4 @@
 
-Handle g_hHaleMusicTimer = null;
-
 void SOUND_OnClearMusicTimer () {
 	if ( g_hHaleMusicTimer != null ) {
 		KillTimer ( g_hHaleMusicTimer );

@@ -4,7 +4,7 @@
 #include <autoexecconfig>
 #include <soundlib>
 
-#define PLUGIN_VERSION	"1.1.8"
+#define PLUGIN_VERSION	"1.1.9"
 
 public Plugin myinfo = {
 	name = "CS:GO VS. Saxston Hale Mode a.k.a Counter-Strike: Freak Offensive"
@@ -131,6 +131,7 @@ enum struct HaleData {
 HaleData g_HaleData[MAX_HALE_DATA];
 char g_szHaleSoundData[MAX_HALE_DATA][MAX_SND_TYPE][MAX_HALE_SOUNDS][256];
 char g_szHaleMusic[MAX_HALE_DATA][MAX_HALE_MUSIC][256];
+Handle g_hHaleMusicTimer = null;
 
 /**
  * Weapon Variables
@@ -156,7 +157,7 @@ Handle g_hHudSyncHndl[8] = { null, ... };
 #define HUDSYNC_HALE_HEALTH		3
 #define HUDSYNC_HALE_DMGRANK	4
 
-Handle g_hForwardHandle[13] = { null, ... };
+Handle g_hForwardHandle[14] = { null, ... };
 #define FORWARD_ON_ROUND_START_COUNT_DOWN	0
 #define FORWARD_ON_HUMAN_TO_HALE	1
 #define FORWARD_ON_HALE_JUMP_READY	2
@@ -170,6 +171,7 @@ Handle g_hForwardHandle[13] = { null, ... };
 #define FORWARD_ON_PRE_SET_HALE_CLIENT	10
 #define FORWARD_ON_HALE_RAGE_CHARGE	11
 #define FORWARD_ON_HALE_WEIGHT_DOWN_LANDING	12
+#define FORWARD_ON_HALE_RAGE_POST	13
 
 int g_iChooseHaleIndex = -1;
 int g_iHaleClient = -1;
