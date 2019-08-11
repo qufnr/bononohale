@@ -1,0 +1,237 @@
+"weapon"
+{
+	"weapon_glock"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_hkp2000"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_usp_silencer"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_p250"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_fiveseven"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_deagle"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_elite"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_revolver"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_cz75a"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	
+	"weapon_mp9"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_mp7"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_mp5sd"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_ump45"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_mac10"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_p90"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_bizon"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	
+	"weapon_famas"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_galilar"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_m4a1"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_m4a1_silencer"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_ak47"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_sg556"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_aug"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_ssg08"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_awp"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_scar20"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_g3sg1"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	
+	"weapon_nova"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_xm1014"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_sawedoff"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_mag7"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_m249"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+	"weapon_negev"
+	{
+		"damage_multiple"	"1.0"
+		"knockback"		"1.0"
+		"fire_rate"		"1.0"
+		"reload_speed"	"1.0"
+	}
+}

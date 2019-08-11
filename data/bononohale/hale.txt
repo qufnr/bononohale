@@ -1,0 +1,61 @@
+"data"
+{
+
+//	"헤일 명"
+//	{
+//		"playermodel"	"플레이어 모델 경로, null일 경우 기본 게임 모델로 대처합니다."
+//		"armsmodel"		"플레이어 장갑 모델, 없을 경우 빈칸으로 둡니다."
+//		"health"		"기본 체력 갑"
+//		"healthmath"	"플레이어 비례 체력 증가 값"
+//		"armor"		"아머 값"
+//		"speed"		"이동 속도 값"
+//		"gravity"	"중력 값"
+//		"jumpvec"	"슈퍼 점프 백터 값"
+//		"taggingScaleMultiple"	"태깅 멀티플. 예) 1.0 - 기본, 0.1 - 많음, 1.5 - 적음"
+//		"knockbackImmunityScale"	"넉백 면역 값. 예) 1.0 - 기본, 0.1 - 면역을 많이 받음, 1.5 - 적게 받음"
+//		"ragerange"	"분노 시전 피해 값"
+//
+//		"damage_multiple"	"일반 공격 피해량"
+//		"attack_speed"		"일반 공격 속도"
+//
+//		"distance_of_rage"	"분노 거리 (0일 경우 분노 지속만 됨)"
+//		"duration_of_rage"	"분노 지속 시간 (aka. 스턴 지속 시간)"
+//
+//		//	모든 소리는 1에서 4까지 존재합니다.
+//		"snd_death_1"	"사망 사운드"
+//		"snd_intro_1"	"등장 사운드 (헤일 선택 후 헤일이 스폰될 때)"
+//		"snd_jump_1"	"점프 사운드 (슈퍼 점프)"
+//		"snd_kill_1"	"처치 사운드"
+//		"snd_pain_1"	"허트 사운드"
+//		"snd_rage_1"	"분노 사운드"
+//		"snd_victory_1"	"승리 사운드"
+//
+//		"music_1"		"음악 (1에서 8까지)"
+//	}
+
+	"test"
+	{
+		"playermodel"	"null"
+		"armsmodel"		""
+		"health"		"4500"
+		"healthmath"	"1100"
+		"armor"			"800"
+		"speed"			"1.2"
+		"gravity"		"0.9"
+		
+		"jumpvec"				"1.0"
+		"jumpcooldown"			"7.0"
+		"weightdowncooldown"	"7.0"
+		
+		"knockbackImmunityScale"	"3.8"
+		
+		"ragerange"		"3000"
+		
+		"distance_of_rage"	"700.0"
+		"duration_of_rage"	"5.0"
+		
+		"damage_multiple"	"1.0"
+		"attack_speed"		"1.0"
+
+	}
+}
