@@ -11,10 +11,10 @@
 **특정 타겟을 스턴 합니다.**  
 
 > sm_setboss (index)  
-**해당 라운드 보스를 설정합니다. (라운드 시작하고 보스가 선택되기 전에 설정해야 합니다.)**
+**해당 라운드 보스를 설정합니다.**  
 
 > sm_setrage (#userid|name) (value)  
-**특정 타겟의 분노를 설정합니다. (타겟이 보스여야만 적용 됩니다.)**
+**특정 타겟의 분노를 설정합니다. (타겟이 보스여야만 적용 됩니다.)**  
 
 
 ## Commands
@@ -66,6 +66,13 @@ native bool NONOHALE_IsGamePlayerWaiting ();
  * @return 헤일을 찾고 있을 경우 true를 반환합니다.
  */
 native bool NONOHALE_IsGameFindHale ();
+
+/**
+ * 준비 시간인지 채크합니다.
+ *
+ * @return 준비 시간일 경우 true를 반환합니다.
+ */
+native bool NONOHALE_IsGameWarmup ();
 
 /**
  * 클라이언트가 헤일인지 채크합니다.
@@ -145,6 +152,36 @@ native void NONOHALE_AddDamages ( int client, int addValue );
 native int NONOHALE_GetClientQueuePoints ( int client );
 
 /**
+ * 클라이언트를 스턴 합니다.
+ *
+ * @param target
+ * @param attacker
+ * @param duration
+ * @param damages
+ */
+native int NONOHALE_SetPlayerStun ( int target, int attacker, float duration = 5.0, int damages = 0 );
+
+/**
+ * 헤일 이름을 구합니다.
+ *
+ * @param haleIndex
+ * @param buffer
+ * @param maxlen
+ * @return SP_ERROR_NONE on success, any other integer on failure.
+ */
+native int NONOHALE_GetHaleName( int haleIndex, const char[] buffer, int maxlen );
+
+/**
+ * 헤일 설명을 구합니다.
+ *
+ * @param haleIndex
+ * @param buffer
+ * @param maxlen
+ * @return SP_ERROR_NONE on success, any other integer on failure.
+ */
+native int NONOHALE_GetHaleDescription ( int haleIndex, const char[] buffer, int maxlen );
+
+/**
  * 클라이언트의 큐 포인트를 설정합니다.
  *
  * @param client
@@ -159,6 +196,28 @@ native void NONOHALE_SetClientQueuePoints ( int client, int value );
  * @param maxlen
  */
 native void NONOHALE_GetPlayMusic ( const char[] music, int maxlen );
+
+/**
+ * 재생중인 음악을 끕니다.
+ *
+ * @return 음악이 꺼졌다면 true를 반환합니다.
+ */
+native bool NONOHALE_StopPlayMusic ();
+
+/**
+ * 선택된 헤일 인덱스를 구합니다.
+ *
+ * @return g_iChooseHaleIndex
+ */
+native int NONOHALE_GetChooseHaleIndex ();
+
+/**
+ * 클라이언트의 음악 토글 값을 구합니다.
+ *
+ * @param client
+ * @return 토글 값
+ */
+native int Native_GetClientSoundToggle ( int client );
 
 /**
  * 헤일을 찾을 때 틱(초)마다 호출합니다.
@@ -229,6 +288,8 @@ forward void NONOHALE_OnClientStomp ( int victim, int attacker );
  * @param haleIndex
  */
 forward Action NONOHALE_OnHaleRage ( int client, int haleIndex, float& distance, float& duration );
+
+forward void NONOHALE_OnHaleRagePost ( int client, int haleIndex, float distance, float duration );
 
 /**
  * 헤일이 분노를 사용하고 종료 되었을 때 호출합니다.
